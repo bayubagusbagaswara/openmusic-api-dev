@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/bayubagusbagaswara/openmusic-v1-dev#readme",
   "devDependencies": {
+    "eslint": "^8.11.0",
     "nodemon": "^2.0.15"
   }
 }
