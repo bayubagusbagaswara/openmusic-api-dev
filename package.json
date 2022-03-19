@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/bayubagusbagaswara/openmusic-v1-dev/issues"
   },
-  "homepage": "https://github.com/bayubagusbagaswara/openmusic-v1-dev#readme"
+  "homepage": "https://github.com/bayubagusbagaswara/openmusic-v1-dev#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
