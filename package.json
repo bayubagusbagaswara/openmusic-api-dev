@@ -1,0 +1,20 @@
+{
+  "name": "openmusic-v1-dev",
+  "version": "1.0.0",
+  "description": "- npm init --y\r - npm install nodemon --save-dev\r - npm install eslint --save-dev\r - npx eslint --init\r - npm install @hapi/hapi\r - npm install nanoid",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bayubagusbagaswara/openmusic-v1-dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bayubagusbagaswara/openmusic-v1-dev/issues"
+  },
+  "homepage": "https://github.com/bayubagusbagaswara/openmusic-v1-dev#readme"
+}
