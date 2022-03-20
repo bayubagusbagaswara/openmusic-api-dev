@@ -10,7 +10,7 @@
 
 - buat struktur proyek
 
-- Install joi 
+- Install joi `npm install joi`
 - Install postgres
 - Install dotenv
 - npm install node-pg-migrate
