@@ -1,1 +1,1 @@
-console.log("Membuat API Open Music");
+console.log('Membuat API Open Music');
