@@ -11,6 +11,10 @@
 - buat struktur proyek
 
 - Install joi `npm install joi`
-- Install postgres
-- Install dotenv
-- npm install node-pg-migrate
+- Install postgres `npm install pg`
+- Install dotenv `npm install dotenv`
+- `npm install node-pg-migrate`
+- kemudian buat scripts di package.json `"migrate": "node-pg-migrate"`
+- lalu buat file migrate nya `npm run migrate create "create table songs"` dan `npm run migrate create "create table albums"`
+- kemudian tulis skema migrate di kedua file tersebut
+- setelah selesai, lalu kita run skema migrate nya `npm run migrate up`
