@@ -10,15 +10,11 @@ class AlbumsService {
   // add album
   addAlbum({ name, year }) {
     const id = nanoid(16);
-    const insertedAt = new Date().toISOString();
-    const updatedAt = insertedAt;
 
     const newAlbum = {
       id,
       name,
       year,
-      insertedAt,
-      updatedAt,
     };
 
     this._albums.push(newAlbum);
@@ -29,12 +25,10 @@ class AlbumsService {
     return id;
   }
 
-  // get all album
   getAlbums() {
     return this._albums;
   }
 
-  // get album by id
   getAlbumById(id) {
     const album = this._albums.filter((a) => a.id === id)[0];
     if (!album) {
@@ -43,7 +37,6 @@ class AlbumsService {
     return album;
   }
 
-  // update album
   editAlbumById(id, { name, year }) {
     const index = this._albums.findIndex((album) => album.id === id);
 
@@ -51,17 +44,13 @@ class AlbumsService {
       throw new NotFoundError('Gagal memperbarui album. Id tidak ditemukan');
     }
 
-    const updatedAt = new Date().toISOString();
-
     this._albums[index] = {
       ...this._albums[index],
       name,
       year,
-      updatedAt,
     };
   }
 
-  // delete album
   deleteAlbumById(id) {
     const index = this._albums.findIndex((album) => album.id === id);
     if (index === -1) {
