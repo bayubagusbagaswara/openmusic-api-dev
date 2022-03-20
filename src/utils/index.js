@@ -8,6 +8,7 @@ const mapSongDBToModel = ({
   duration,
   inserted_at,
   updated_at,
+  album_id,
 }) => ({
   id,
   title,
@@ -17,6 +18,7 @@ const mapSongDBToModel = ({
   duration,
   insertedAt: inserted_at,
   updatedAt: updated_at,
+  albumId: album_id,
 });
 
 const mapAlbumDBToModel = ({ id, name, year }) => ({
