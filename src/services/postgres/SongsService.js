@@ -17,7 +17,6 @@ class SongsService {
       text: 'INSERT INTO songs VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id',
       values: [id, title, year, performer, genre, duration, albumId],
     };
-    // console.error(error);
 
     const result = await this._pool.query(query);
     if (!result.rows[0].id) {
@@ -27,8 +26,9 @@ class SongsService {
     return result.rows[0].id;
   }
 
+  // saat memanggil service getSongs() maka kita sertakan parameter title dan performer, atau bisa tidak ada parameter sama sekali
   async getSongs() {
-    const result = await this._pool.query('SELECT id, title, performer FROM songs');
+    const result = await this._pool.query('SELET id, title, performer FROM songs');
     return result.rows.map(mapSongDBToModel);
   }
 

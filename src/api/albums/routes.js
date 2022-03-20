@@ -4,11 +4,11 @@ const routes = (handler) => [
     path: '/albums',
     handler: handler.postAlbumHandler, // postAlbumHandler hanya menerima dan menyimpan "satu" album.
   },
-  {
-    method: 'GET',
-    path: '/albums',
-    handler: handler.getAlbumsHandler, // getAlbumsHandler mengembalikan "banyak" album.
-  },
+  // {
+  //   method: 'GET',
+  //   path: '/albums',
+  //   handler: handler.getAlbumsHandler, // getAlbumsHandler mengembalikan "banyak" album.
+  // },
   {
     method: 'GET',
     path: '/albums/{id}',

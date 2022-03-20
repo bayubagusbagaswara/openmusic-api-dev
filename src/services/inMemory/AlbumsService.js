@@ -25,9 +25,9 @@ class AlbumsService {
     return id;
   }
 
-  getAlbums() {
-    return this._albums;
-  }
+  // getAlbums() {
+  //   return this._albums;
+  // }
 
   getAlbumById(id) {
     const album = this._albums.filter((a) => a.id === id)[0];

@@ -53,8 +53,10 @@ class SongsHandler {
     }
   }
 
-  async getSongsHandler(_request, h) {
+  async getSongsHandler(request, h) {
     try {
+      // tangkap request berupa ?title dan ?perfomater
+      // dan di service getSongs() harus menerima parameter
       const songs = await this._service.getSongs();
       const songsProps = songs.map((song) => ({
         id: song.id,
