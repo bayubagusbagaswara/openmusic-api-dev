@@ -18,3 +18,5 @@
 - lalu buat file migrate nya `npm run migrate create "create table songs"` dan `npm run migrate create "create table albums"`
 - kemudian tulis skema migrate di kedua file tersebut
 - setelah selesai, lalu kita run skema migrate nya `npm run migrate up`
+
+- lalu kita Membuat Postgres NotesService atau pool
