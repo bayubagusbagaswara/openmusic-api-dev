@@ -1,6 +1,7 @@
 // bertanggung jawab untuk mengelola resource songs yang disimpan pada memory (array)
 
 const { nanoid } = require('nanoid');
+const NotFoundError = require('../../exceptions/NotFoundError');
 
 class SongsService {
   constructor() {
@@ -34,6 +35,48 @@ class SongsService {
     }
 
     return id;
+  }
+
+  getSongs() {
+    return this._songs;
+  }
+
+  getSongById(id) {
+    const song = this._songs.filter((s) => s.id === id)[0];
+    if (!song) {
+      throw new NotFoundError('Lagu tidak ditemukan');
+    }
+    return song;
+  }
+
+  editSongById(id, {
+    title, year, performer, genre, duration,
+  }) {
+    const index = this._songs.findIndex((song) => song.id === id);
+
+    if (index === -1) {
+      throw new NotFoundError('Gagal memperbarui lagu. Id tidak ditemukan');
+    }
+
+    const updatedAt = new Date().toISOString();
+
+    this._songs[index] = {
+      ...this._songs[index],
+      title,
+      year,
+      performer,
+      genre,
+      duration,
+      updatedAt,
+    };
+  }
+
+  deleteSongById(id) {
+    const index = this._songs.findIndex((song) => song.id === id);
+    if (index === -1) {
+      throw new NotFoundError('Lagu gagal dihapus. Id tidak ditemukan');
+    }
+    this._songs.splice(index, 1);
   }
 }
 
