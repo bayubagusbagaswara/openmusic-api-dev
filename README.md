@@ -20,3 +20,10 @@
 - setelah selesai, lalu kita run skema migrate nya `npm run migrate up`
 
 - lalu kita Membuat Postgres NotesService atau pool
+
+# Langkah Membuat User dan Database
+
+- psql --username postgres
+- CREATE USER `<nama_user>` WITH ENCRYPTED PASSWORD `'<password_user>'`;
+- CREATE DATABASE `<nama_database>`;
+- GRANT ALL PRIVILEGES ON DATABASE `<nama_database>` TO `<nama_user>`;
