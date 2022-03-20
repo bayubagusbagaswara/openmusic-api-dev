@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-const mapDBToModel = ({
+const mapSongDBToModel = ({
   id,
   title,
   year,
@@ -19,8 +19,10 @@ const mapDBToModel = ({
   updatedAt: updated_at,
 });
 
-module.exports = { mapDBToModel };
+const mapAlbumDBToModel = ({ id, name, year }) => ({
+  id,
+  name,
+  year,
+});
 
-// const mapAlbumDBToModel = () => { ... }
-
-// const mapSongDBToModel = () => { ... }
+module.exports = { mapAlbumDBToModel, mapSongDBToModel };
