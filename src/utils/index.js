@@ -20,3 +20,7 @@ const mapDBToModel = ({
 });
 
 module.exports = { mapDBToModel };
+
+// const mapAlbumDBToModel = () => { ... }
+
+// const mapSongDBToModel = () => { ... }
