@@ -13,10 +13,9 @@ class SongsService {
     title, year, performer, genre, duration,
   }) {
     const id = `song-${nanoid(16)}`;
-    const albumId = `album-${nanoid(16)}`;
     const query = {
-      text: 'INSERT INTO songs VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id',
-      values: [id, title, year, performer, genre, duration, albumId],
+      text: 'INSERT INTO songs VALUES($1, $2, $3, $4, $5, $6) RETURNING id',
+      values: [id, title, year, performer, genre, duration],
     };
 
     const result = await this._pool.query(query);
@@ -28,7 +27,7 @@ class SongsService {
   }
 
   async getSongs() {
-    const result = await this._pool.query('SELET id, title, performer FROM songs');
+    const result = await this._pool.query('SELECT id, title, performer FROM songs');
     return result.rows.map(mapSongDBToModel);
   }
 
