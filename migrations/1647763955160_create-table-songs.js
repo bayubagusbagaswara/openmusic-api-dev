@@ -9,26 +9,28 @@ exports.up = (pgm) => {
       primaryKey: true,
     },
     title: {
-      type: 'VARCHAR(255)',
+      type: 'TEXT',
       notNull: true,
     },
     year: {
       type: 'INTEGER',
       notNull: true,
     },
-    genre: {
+    performer: {
       type: 'TEXT',
       notNull: true,
     },
-    performer: {
+    genre: {
       type: 'TEXT',
       notNull: true,
     },
     duration: {
       type: 'INTEGER',
+      notNull: false,
     },
-    albumId: {
+    album_id: {
       type: 'TEXT',
+      notNull: false,
     },
   });
 };

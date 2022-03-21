@@ -1,4 +1,6 @@
 const ClientError = require('../../exceptions/ClientError');
+const InvariantError = require('../../exceptions/InvariantError');
+const NotFoundError = require('../../exceptions/NotFoundError');
 
 class SongsHandler {
   constructor(service, validator) {
@@ -83,6 +85,7 @@ class SongsHandler {
     try {
       const { id } = request.params;
       const song = await this._service.getSongById(id);
+
       return {
         status: 'success',
         data: {
@@ -90,7 +93,7 @@ class SongsHandler {
         },
       };
     } catch (error) {
-      if (error instanceof ClientError) {
+      if (error instanceof NotFoundError) {
         const response = h.response({
           status: 'fail',
           message: error.message,
@@ -113,21 +116,16 @@ class SongsHandler {
   async putSongByIdHandler(request, h) {
     try {
       this._validator.validateSongPayload(request.payload);
-      const {
-        title, year, genre, performer, duration, albumId,
-      } = request.payload;
       const { id } = request.params;
 
-      await this._service.editSongById(id, {
-        title, year, genre, performer, duration, albumId,
-      });
+      await this._service.editSongById(id, request.payload);
 
       return {
         status: 'success',
         message: 'Lagu berhasil diperbarui',
       };
     } catch (error) {
-      if (error instanceof ClientError) {
+      if (error instanceof NotFoundError || error instanceof InvariantError) {
         const response = h.response({
           status: 'fail',
           message: error.message,
