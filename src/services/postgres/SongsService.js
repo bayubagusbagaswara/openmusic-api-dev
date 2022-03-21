@@ -29,7 +29,7 @@ class SongsService {
 
   async getSongs() {
     const result = await this._pool.query('SELECT id, title, performer FROM songs');
-    return result.rows.map(mapSongDBToModel);
+    return result.rows;
   }
 
   async getSongById(id) {
@@ -60,10 +60,10 @@ class SongsService {
     }
   }
 
-  async deleteSongById(songId) {
+  async deleteSongById(id) {
     const query = {
       text: 'DELETE FROM songs WHERE id = $1 RETURNING id',
-      values: [songId],
+      values: [id],
     };
 
     const result = await this._pool.query(query);

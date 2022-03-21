@@ -57,7 +57,8 @@ class AlbumsHandler {
 
       const songs = await this._service.getSongsByAlbumId(id); // hasilnya adalah data songs
 
-      const albumWithSongs = { ...album, songs };
+      // gabung antara data object albums dengan array of object songs (karena songs ada lebih dari satu data)
+      const albumWithSongs = { album, ...songs };
 
       return {
         status: 'success',
@@ -89,8 +90,8 @@ class AlbumsHandler {
   async putAlbumByIdHandler(request, h) {
     try {
       this._validator.validateAlbumPayload(request.payload);
-      const { name, year } = request.payload;
       const { id } = request.params;
+      const { name, year } = request.payload;
 
       await this._service.editAlbumById(id, { name, year });
 
