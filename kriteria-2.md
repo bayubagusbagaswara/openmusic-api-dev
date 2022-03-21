@@ -25,7 +25,7 @@
 }
 ```
 
-# Get Song By ID
+# Get All Songs
 - Method : `GET`
 - Endpoint : `/songs`
 - Body :
@@ -36,7 +36,7 @@
 }
 ```
 
-# Get All Songs
+# Get Song By Id
 - Method : `GET`
 - Endpoint : `/songs/{id}`
 

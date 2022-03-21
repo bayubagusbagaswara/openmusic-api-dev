@@ -27,8 +27,37 @@ class SongsService {
   }
 
   // saat memanggil service getSongs() maka kita sertakan parameter title dan performer, atau bisa tidak ada parameter sama sekali
-  async getSongs() {
-    const result = await this._pool.query('SELET id, title, performer FROM songs');
+  // harusnya di service fokus bisnis logic
+  // dimana function getSong akan menerima parameter berupa Title dan Performer
+  // lalu data didatabase akan diquery berdasarkan title atau performer
+  async getSongs({ title, performer }) {
+    const titleSong = title.toLowerCase().includes(title.toLowerCase());
+    const performerSong = performer.toLowerCase().includes(performer.toLowerCase());
+
+    if (title && performer) {
+      const query = {
+        text: 'SELECT * FROM songs WHERE title = $1 AND performer = $2',
+        values: [titleSong, performerSong],
+      };
+      const result = await this._pool.query(query);
+      return result.rows.map(mapSongDBToModel);
+    } if (title) {
+      const query = {
+        text: 'SELECT * FROM songs WHERE title = $1',
+        values: [titleSong],
+      };
+      const result = await this._pool.query(query);
+      return result.rows.map(mapSongDBToModel);
+    } if (performer) {
+      const query = {
+        text: 'SELECT * FROM songs WHERE performer = $1',
+        values: [performerSong],
+      };
+      const result = await this._pool.query(query);
+      return result.rows.map(mapSongDBToModel);
+    }
+
+    const result = await this._pool.query('SELET * FROM songs');
     return result.rows.map(mapSongDBToModel);
   }
 
@@ -50,7 +79,7 @@ class SongsService {
     title, year, performer, genre, duration, albumId,
   }) {
     const query = {
-      text: 'UPDATE songs SET title = $1, year = $2, performer = $3, genre = $4, duration = $5, "albumId" = $6 WHERE id = $7 RETURNING id',
+      text: 'UPDATE songs SET title = $1, year = $2, performer = $3, genre = $4, duration = $5, albumId = $6 WHERE id = $7 RETURNING id',
       values: [title, year, performer, genre, duration, albumId, id],
     };
     const result = await this._pool.query(query);

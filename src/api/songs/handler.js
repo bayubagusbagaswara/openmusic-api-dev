@@ -16,11 +16,11 @@ class SongsHandler {
     try {
       this._validator.validateSongPayload(request.payload);
       const {
-        title = 'untitled', year, performer, genre, duration,
+        title = 'untitled', year, performer, genre, duration, albumId,
       } = request.payload;
 
       const songId = await this._service.addSong({
-        title, year, performer, genre, duration,
+        title, year, performer, genre, duration, albumId,
       });
 
       const response = h.response({
@@ -53,41 +53,18 @@ class SongsHandler {
     }
   }
 
+  // get All Song, ada membawa query parameter berupa data title dan performer
   async getSongsHandler(request, h) {
-    try {
-      // tangkap request berupa ?title dan ?perfomater
-      // dan di service getSongs() harus menerima parameter
-      const songs = await this._service.getSongs();
-      const songsProps = songs.map((song) => ({
-        id: song.id,
-        title: song.title,
-        performer: song.performer,
-      }));
-      return {
-        status: 'success',
-        data: {
-          songs: songsProps,
-        },
-      };
-    } catch (error) {
-      if (error instanceof ClientError) {
-        const response = h.response({
-          status: 'fail',
-          message: error.message,
-        });
-        response.code(error.statusCode);
-        return response;
-      }
-
-      // Server ERROR!
-      const response = h.response({
-        status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
-      console.error(error);
-      return response;
-    }
+    const { title, performer } = request.query;
+    const songs = await this._service.getSongs({ title, performer });
+    const response = h.response({
+      status: 'success',
+      data: {
+        songs,
+      },
+    });
+    response.code(200);
+    return response;
   }
 
   async getSongByIdHandler(request, h) {
