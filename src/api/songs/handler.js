@@ -57,11 +57,13 @@ class SongsHandler {
     const { title, performer } = request.query;
     let songs = await this._service.getSongs();
 
-    if (title !== undefined) {
+    if (title && performer) {
+      songs = songs.filter((song) => song.title.toLowerCase().includes(title.toLowerCase()) && song.performer.toLowerCase().includes(performer.toLowerCase()));
+    }
+    if (title) {
       songs = songs.filter((song) => song.title.toLowerCase().includes(title.toLowerCase()));
     }
-
-    if (performer !== undefined) {
+    if (performer) {
       songs = songs.filter((song) => song.performer.toLowerCase()
         .includes(performer.toLowerCase()));
     }
