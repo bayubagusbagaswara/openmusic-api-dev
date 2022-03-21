@@ -16,11 +16,11 @@ class SongsHandler {
     try {
       this._validator.validateSongPayload(request.payload);
       const {
-        title = 'untitled', year, performer, genre, duration, albumId,
+        title = 'untitled', year, performer, genre, duration,
       } = request.payload;
 
       const songId = await this._service.addSong({
-        title, year, performer, genre, duration, albumId,
+        title, year, performer, genre, duration,
       });
 
       const response = h.response({
@@ -53,14 +53,26 @@ class SongsHandler {
     }
   }
 
-  // get All Song, ada membawa query parameter berupa data title dan performer
   async getSongsHandler(request, h) {
     const { title, performer } = request.query;
-    const songs = await this._service.getSongs({ title, performer });
+    let songs = await this._service.getSongs();
+
+    if (title !== undefined) {
+      songs = songs.filter((song) => song.title.toLowerCase().includes(title.toLowerCase()));
+    }
+
+    if (performer !== undefined) {
+      songs = songs.filter((song) => song.performer.toLowerCase()
+        .includes(performer.toLowerCase()));
+    }
     const response = h.response({
       status: 'success',
       data: {
-        songs,
+        songs: songs.map((song) => ({
+          id: song.id,
+          title: song.title,
+          performer: song.performer,
+        })),
       },
     });
     response.code(200);
