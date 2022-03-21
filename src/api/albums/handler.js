@@ -54,16 +54,14 @@ class AlbumsHandler {
     try {
       const { id } = request.params;
       const album = await this._service.getAlbumById(id);
+      const songs = await this._service.getSongsByAlbumId(id);
 
-      const songs = await this._service.getSongsByAlbumId(id); // hasilnya adalah data songs
-
-      // gabung antara data object albums dengan array of object songs (karena songs ada lebih dari satu data)
-      const albumWithSongs = { album, ...songs };
+      const albumContainsSongs = { ...album, songs };
 
       return {
         status: 'success',
         data: {
-          album: albumWithSongs,
+          album: albumContainsSongs,
         },
       };
     } catch (error) {
