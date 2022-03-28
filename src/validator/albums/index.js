@@ -1,5 +1,3 @@
-// index.js akan fokus dalam membuat fungsi sebagai validator yang menggunakan schema dari schema.js
-
 const InvariantError = require('../../exceptions/InvariantError');
 const { AlbumPayloadSchema } = require('./schema');
 
