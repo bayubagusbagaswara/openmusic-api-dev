@@ -1,29 +1,24 @@
-# OpenMusic API V1 Dev
+# OpenMusic API Versi 1
 
-# Library atau Package
-- npm init --y
-- npm install nodemon --save-dev
-- npm install eslint --save-dev
-- npx eslint --init
-- npm install @hapi/hapi
-- npm install nanoid
+# Setup Project
 
-- buat struktur proyek
+- Clone project
 
-- Install joi `npm install joi`
-- Install postgres `npm install pg`
-- Install dotenv `npm install dotenv`
-- `npm install node-pg-migrate`
-- kemudian buat scripts di package.json `"migrate": "node-pg-migrate"`
-- lalu buat file migrate nya `npm run migrate create "create table songs"` dan `npm run migrate create "create table albums"`
-- kemudian tulis skema migrate di kedua file tersebut
-- setelah selesai, lalu kita run skema migrate nya `npm run migrate up`
+    ```
+    git clone
+    ```
+- Install library
 
-- lalu kita Membuat Postgres NotesService atau pool
+    ```
+    npm install 
+    ```
+- Migrate schema database
 
-# Langkah Membuat User dan Database
+    ```
+    npm run migrate up
+    ```
+- Running Project
 
-- psql --username postgres
-- CREATE USER `<nama_user>` WITH ENCRYPTED PASSWORD `'<password_user>'`;
-- CREATE DATABASE `<nama_database>`;
-- GRANT ALL PRIVILEGES ON DATABASE `<nama_database>` TO `<nama_user>`;
+    ```
+    npm run start-dev
+    ```
