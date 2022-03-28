@@ -1,5 +1,3 @@
-// Untuk request handling akan disimpan pada handler.js
-
 const ClientError = require('../../exceptions/ClientError');
 
 class AlbumsHandler {
