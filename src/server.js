@@ -1,4 +1,3 @@
-// mengimpor dotenv dan menjalankan konfigurasinya
 require('dotenv').config();
 
 const Hapi = require('@hapi/hapi');
@@ -22,8 +21,6 @@ const init = async () => {
     },
   });
 
-  // perhatikan kita punya 2 api artinya ada 2 service yakni AlbumsService dan SongsService
-  // lalu bagaimana caranya mendaftarkan 2 plugin kita di server?
   await server.register([
     {
       plugin: albums,
